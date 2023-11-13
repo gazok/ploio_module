@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ploio_ssh_module_",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ploio_ssh_module_::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ploio_ssh_module_-Debug-efd69df058a7054d2945.json",
+					"name" : "ploio_ssh_module_",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/limjung/CLionProjects/ploio_ssh_module /cmake-build-debug",
+		"source" : "/Users/limjung/CLionProjects/ploio_ssh_module "
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}
