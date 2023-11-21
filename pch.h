@@ -6,6 +6,8 @@
 #define PLOIO_SSH_MODULE__PCH_H
 #include <iostream>
 #include <string>
-#include "pcap.h"
-
+#include <netinet/in.h>
+#include "Packet.h"
+#include "TcpHeader.h"
+#include "EtherHeader.h"
 #endif //PLOIO_SSH_MODULE__PCH_H

@@ -2,60 +2,58 @@
 #define BUFSIZE 100000
 #define MACSIZE 6
 
-typedef int32_t (*getenv_t) (
-        const char* key,
-        int32_t offset,
-        void* buf,
-
-        int32_t size);
-
-typedef int32_t (*setenv_t) (
-        const char* key,
-        int32_t offset,
-        const void* buf,
-        int32_t size);
-
 typedef int32_t (*retval_t) (
         int32_t code,
         const char* msg);
 
-struct EthHeader
+
+bool is_tcp(Packet &packet)
 {
-    u_int8_t dst_mac[MACSIZE];
-    u_int8_t src_mac[MACSIZE];
-    u_int16_t type;
-};
+  //TODO
+}
 
-struct IpHeader
+bool is_ssh(Packet &packet)
 {
-    // TODO
-    u_int32_t srcIp;
-};
+    if(!is_tcp(packet)) return false;
+    TcpHeader *tcp_header = packet.get_tcp_header();
+    if(tcp_header->dst_port==22) return true;
+    return false;
+}
 
-struct TcpHeader
+bool ssh_attempt_ten_times_per_second(Packet &packet)
 {
-    // TODO
-};
-
-
-
-
-class Packet // parsed packets included class
-{
-    // TODO : pointers of packet
-public:
-    Packet(const void* pkt,int64_t nbpkt);
-};
-
-// entry point of shared lib
-void entrypoint (
-        const char* ifname,
-        const void* pkt, // packet bytes
-        int64_t nbpkt, // packet size
-        retval_t retval)
-{
-    // TODO : Parsed packet ??
-    // construct packet  class; extract srcIp;
-    Packet packet(pkt,nbpkt);
 
 }
+
+void entrypoint (
+        const char* ifname, // will be replaced !
+        const void* pkt,
+        int64_t nbpkt,
+        retval_t retval)
+{
+
+    Packet packet = Packet(&pkt,nbpkt);
+
+    char* msg;
+    int32_t code;
+
+    if(!is_ssh(packet) || !packet.is_tcp())
+    {
+        msg     = new char[5];
+        msg     = "OK";
+        code    = 20001;
+    }
+    else
+    {
+        if(ssh_attempt_ten_times_per_second(packet))
+        {
+            msg   = new char[5];
+            msg   = "DOWN";
+            code  = 30001;
+        }
+    }
+
+    retval(code,msg); // What is return value int32_t ??
+    return;
+}
+
