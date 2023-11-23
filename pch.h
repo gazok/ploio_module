@@ -7,5 +7,6 @@
 #include <iostream>
 #include <string>
 #include "pcap.h"
-
+#include "hdr.h"
+#include <queue>
 #endif //PLOIO_SSH_MODULE__PCH_H
