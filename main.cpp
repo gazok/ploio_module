@@ -43,7 +43,7 @@ void entrypoint (
     }
 
     TcpHdr * ptcp = (TcpHdr *)(packet + offset);
-    if(ptcp->dst_port != 0x22)
+    if(ptcp->dst_port != 22)
     {
       strcpy(msg,"OK");
       code = 20001;

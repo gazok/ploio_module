@@ -6,7 +6,6 @@
 #define PLOIO_SSH_MODULE__HDR_H
 #include "stdint.h"
 
-
 struct EthHdr
 {
   u_int8_t dst_mac[6];
