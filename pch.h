@@ -9,4 +9,6 @@
 #include "pcap.h"
 #include "hdr.h"
 #include <queue>
+#include <map>
+#include <utility>
 #endif //PLOIO_SSH_MODULE__PCH_H

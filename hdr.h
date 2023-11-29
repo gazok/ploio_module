@@ -5,6 +5,20 @@
 #ifndef PLOIO_SSH_MODULE__HDR_H
 #define PLOIO_SSH_MODULE__HDR_H
 #include "stdint.h"
+typedef struct __pktreg pktreg_t;
+typedef void (*setres_t)(uint16_t code, const char* msg);
+
+struct __pktreg {
+  uint64_t  magic;
+  size_t    size;
+  uint8_t*  payload;
+  pktreg_t* next;
+}__attribute__((aligned(4)));
+
+class IP
+{
+
+};
 
 struct EthHdr
 {
