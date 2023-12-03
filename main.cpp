@@ -1,61 +1,53 @@
 #include "pch.h"
-#define BUFSIZE 100000
-#define MACSIZE 6
+#define time_t long long
+#define PR0_RAW   0
+#define PR0_INET  1
+#define PR0_INET6 2
 
-typedef int32_t (*getenv_t) (
-        const char* key,
-        int32_t offset,
-        void* buf,
 
-        int32_t size);
+setres_t *setres_ptr;
 
-typedef int32_t (*setenv_t) (
-        const char* key,
-        int32_t offset,
-        const void* buf,
-        int32_t size);
-
-typedef int32_t (*retval_t) (
-        int32_t code,
-        const char* msg);
-
-struct EthHeader
+bool check_tcp(pktreg_t *pkt)
 {
-    u_int8_t dst_mac[MACSIZE];
-    u_int8_t src_mac[MACSIZE];
-    u_int16_t type;
-};
+  // TODO
+}
 
-struct IpHeader
+void initialize(setres_t setres)
 {
-    // TODO
-    u_int32_t srcIp;
-};
+  setres_ptr = &setres;
+  return;
+}
 
-struct TcpHeader
+bool check_ssh(pktreg_t *pkt)
 {
-    // TODO
-};
+  // TODO
+}
+
+// Data Structure
 
 
+void entrypoint(uint32_t id, struct timeval tv, pktreg_t* pkt)
+/* id -> Identifier of pkt??? */
 
 
-class Packet // parsed packets included class
 {
-    // TODO : pointers of packet
-public:
-    Packet(const void* pkt,int64_t nbpkt);
-};
+  int code;
+  char* msg;
+  if(!check_tcp(pkt) || !check_ssh(pkt))
+  {
+    code = 20001;
+    strcpy(msg,"OK");
+    (*setres_ptr)(code,msg);
+  }
+  time_t now_time = tv.tv_sec;
+  // TODO
 
-// entry point of shared lib
-void entrypoint (
-        const char* ifname,
-        const void* pkt, // packet bytes
-        int64_t nbpkt, // packet size
-        retval_t retval)
-{
-    // TODO : Parsed packet ??
-    // construct packet  class; extract srcIp;
-    Packet packet(pkt,nbpkt);
+
+
 
 }
+
+
+
+
+
